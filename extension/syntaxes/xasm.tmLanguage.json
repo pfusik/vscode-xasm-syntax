@@ -1,14 +1,36 @@
 {
   "scopeName": "source.xasm",
   "patterns": [
-    { "include": "#comments" },
-    { "include": "#strings" },
     { "include": "#labels" },
-    { "include": "#keywords" },
-    { "include": "#numbers" },
-    { "include": "#hex" }
+    { "include": "#statement" },
+    { "include": "#operands" }
   ],
   "repository": {
+    "statement": {
+      "begin": "[ \\t]+(?=[A-Za-z.*|])|^(?=[*|])",
+      "end": "$",
+      "patterns": [
+        { "name": "comment.line.xasm", "match": "\\G[*|].*$" },
+        { "include": "#mnemonicField" },
+        { "include": "#operands" }
+      ]
+    },
+    "operands": {
+      "patterns": [
+        { "include": "#comments" },
+        { "include": "#strings" },
+        {
+          "begin": "\\{",
+          "end": "\\}|$",
+          "patterns": [
+            { "include": "#mnemonicField" },
+            { "include": "#operands" }
+          ]
+        },
+        { "include": "#numbers" },
+        { "include": "#hex" }
+      ]
+    },
     "comments": {
       "patterns": [
         {
@@ -39,19 +61,22 @@
         }
       ]
     },
-    "keywords": {
+    "mnemonicField": {
+      "comment": "Start at the statement mnemonic or just after an opening brace. Colons keep paired instructions in the same field.",
+      "begin": "\\G(?=[A-Za-z.])",
+      "end": "(?=[^A-Za-z0-9_?.:]|$)",
       "patterns": [
         {
           "name": "keyword.instruction.cpu.xasm",
-          "match": "\\b(adc|and|asl|bcc|bcs|beq|bit|bmi|bne|bpl|brk|bvc|bvs|clc|cld|cli|clv|cmp|cpx|cpy|dec|dex|dey|eor|inc|inx|iny|jmp|jsr|lda|ldx|ldy|lsr|nop|ora|pha|php|pla|plp|rol|ror|rti|rts|sbc|sec|sed|sei|sta|stx|sty|tax|tay|tsx|txa|txs|tya)\\b"
+          "match": "(?i)(?<=[ \\t:{])(adc|and|asl|bcc|bcs|beq|bit|bmi|bne|bpl|brk|bvc|bvs|clc|cld|cli|clv|cmp|cpx|cpy|dec|dex|dey|eor|inc|inx|iny|jmp|jsr|lda|ldx|ldy|lsr|nop|ora|pha|php|pla|plp|rol|ror|rti|rts|sbc|sec|sed|sei|sta|stx|sty|tax|tay|tsx|txa|txs|tya)(?![\\w?])"
         },
         {
           "name": "keyword.directive.xasm",
-          "match": "(?<=[ \t])\\.(?i:ds)(?!\\S)|\\b(aln|dta|eif|eli|els|end|equ|ert|icl|ift|opt|org|ini|ins|run)\\b"
+          "match": "(?i)(?<=[ \\t])\\.ds(?!\\S)|(?<=[ \\t:{])(aln|dta|eif|eli|els|end|equ|ert|icl|ift|opt|org|ini|ins|run)(?![\\w?])"
         },
         {
           "name": "keyword.pseudo.xasm",
-          "match": "\\b(add|inw|jcc|jcs|jeq|jmi|jne|jpl|jvc|jvs|mva|mvx|mvy|mwa|mwx|mwy|rcc|rcs|req|rmi|rne|rpl|rvc|rvs|scc|scs|seq|smi|sne|spl|sub|svc|svs)\\b"
+          "match": "(?i)(?<=[ \\t:{])(add|inw|jcc|jcs|jeq|jmi|jne|jpl|jvc|jvs|mva|mvx|mvy|mwa|mwx|mwy|rcc|rcs|req|rmi|rne|rpl|rvc|rvs|scc|scs|seq|smi|sne|spl|sub|svc|svs)(?![\\w?])"
         }
       ]
     },
