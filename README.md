@@ -1,6 +1,6 @@
 # XASM VS Code Extension
 
-This repository contains a Visual Studio Code extension for **XASM assembler** source files (`.asx`, `.xsm`). It provides syntax highlighting, XASM snippets, project initialization, and a cross-platform build/run setup.
+This repository contains a Visual Studio Code extension for [XASM 6502 cross-assembler](https://github.com/pfusik/xasm) source files (`.asx`, `.xsm`). It provides syntax highlighting, XASM snippets, project initialization, and a cross-platform build/run setup.
 
 ## Features
 
