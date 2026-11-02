@@ -2,7 +2,7 @@
   "name": "xasm-syntax",
   "displayName": "XASM Toolkit",
   "description": "XASM support for Visual Studio Code: syntax highlighting, snippets, and project initialization for .asx and .xsm files",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "seban-slt",
   "pricing": "Free",
   "license": "Unlicense",
