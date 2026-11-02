@@ -2,6 +2,13 @@
 
 All notable changes to the XASM Toolkit extension are documented here.
 
+## 0.1.2
+
+- Added syntax highlighting for the XASM `.DS` storage directive.
+- Made highlighting case-insensitive for 6502 instructions, XASM directives and pseudo-instructions, including paired instructions such as `InY:bNe` and opcode expressions such as `{nOp}`.
+- Removed the system Node.js requirement for **Build & Run (detached)** and **Run only (detached)** on Linux. Existing projects can adopt the fix by updating the two Linux entries in `.vscode/launch.json` as described in the README.
+- Disabled editor color previews for XASM files in the example workspace and in newly generated workspace settings.
+
 ## 0.1.1
 
 - Renamed the extension to `XASM Toolkit` to avoid a Marketplace display name conflict.
