@@ -27,6 +27,9 @@ jobs:
       - name: Validate extension JavaScript
         run: node --check extension/extension.js
 
+      - name: Test detached Linux launchers without Node.js
+        run: python3 -m unittest discover -s tests -v
+
       - name: Validate JSON files
         run: |
           python3 -m json.tool extension/package.json > /dev/null

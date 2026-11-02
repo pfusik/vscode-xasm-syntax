@@ -109,6 +109,12 @@ Open the VS Code **Run and Debug** panel.
 
 Please test both configurations.
 
+On Linux, start a fresh VS Code instance with `xasm` and `atari800` on its `PATH` and with `node` absent. Open an XASM source file in a newly initialized project.
+
+1. Select **Build & Run (detached)** and press F5. Check that it builds the `.xex` and that Atari800 keeps running after the debug session ends.
+2. Press F8 in the Atari800 window, then enter `SHOW` in its VS Code terminal. Check that the monitor prints the CPU registers. Enter `QUIT` and wait for the emulator task to finish.
+3. Select **Run only (detached)** and press F5. Check that the same `.xex` starts without a compile step and repeat the monitor check.
+
 ## 7. macOS Specific
 
 The project configuration uses the macOS `open` command rather than hard-coding an emulator. Please verify that:

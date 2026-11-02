@@ -45,9 +45,11 @@ After initialization:
 
 Platform behavior:
 
-- **Linux:** uses `atari800`.
+- **Linux:** uses `atari800`. F5 works without a system Node.js installation.
 - **macOS:** opens `.xex` using the application associated with the file type.
 - **Windows:** opens `.xex` using the application associated with the file type (for example Altirra).
+
+To update an existing Linux project that still launches `node -e ""`, edit both `linux` blocks in `.vscode/launch.json`. Set `"runtimeExecutable": "/bin/true"` and remove the `"args": ["-e", ""]` entry.
 
 The generated `settings.json` contains the example XASM token colors used by this repository. The extension itself does not force a color theme.
 
