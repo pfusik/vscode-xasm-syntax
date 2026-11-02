@@ -47,6 +47,19 @@ The generated/example workspace settings use the following colors:
 
 These colors come from the workspace `.vscode/settings.json`; the extension itself does not force a color theme.
 
+Paste this sample into an XASM editor to check mixed-case mnemonics.
+
+```asm
+        OrG $2000
+ADD     nOp
+        jSr ADD
+        mVa #0 $80
+        InY:bNe ADD
+        DtA {nOp}
+```
+
+Both instructions in `InY:bNe` and the `nOp` inside braces should have the CPU instruction color. `OrG` and `DtA` should have the directive color, and `mVa` the pseudo-instruction color. `ADD` defines a label in column zero. Its two references should have no mnemonic color.
+
 ## 4. Snippet Check
 
 Open an XASM source file and type:
